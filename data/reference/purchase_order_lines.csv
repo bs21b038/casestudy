@@ -1,0 +1,11 @@
+po_number,line_number,description,quantity,unit,unit_price,line_total
+PO-4501,1,Copy paper case,20,cases,35.00,700.00
+PO-4501,2,Toner cartridge,5,each,80.00,400.00
+PO-4502,1,Cloud service onboarding hours,12,hours,100.00,1200.00
+PO-4503,1,Copy paper case,20,cases,35.00,700.00
+PO-4504,1,Enterprise Server Rack 42U,2,units,800.00,1600.00
+PO-4504,2,Gigabit Ethernet Switch 48-Port,4,units,350.00,1400.00
+PO-4504,3,Fiber Optic Patch Cable 10m,25,pieces,12.00,300.00
+PO-4504,4,Redundant Power Supply 750W,2,units,100.00,200.00
+PO-664,1,HDPE PIPE-SDR 6-PE 80\40MM\PN20,315,MTR,121.36,38228.40
+PO-658,1,3CX2.5 SQMM CU.INS.PVC 1000M FLAT SUBMER,1000,MTR,105.94,105940.00

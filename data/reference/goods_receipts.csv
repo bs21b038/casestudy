@@ -1,0 +1,11 @@
+grn_number,po_number,vendor_id,receipt_date,item_description,quantity_received,warehouse_location,received_by,status,status_reason
+GRN-9011,PO-4501,V-1001,2026-10-02,Copy paper case,20,Dock Bay 3,Dock Receiving A,verified,Quality inspection passed; items intact
+GRN-9011,PO-4501,V-1001,2026-10-02,Toner cartridge,5,Dock Bay 3,Dock Receiving A,verified,Quality inspection passed; sealed cartridges
+GRN-9012,PO-4502,V-1002,2026-10-04,Cloud service onboarding hours,12,IT Operations Center,IT Management,verified,Service milestone sign-off by IT Director
+GRN-9013,PO-4503,V-1001,2026-10-05,Copy paper case,15,Dock Bay 1,Dock Receiving B,partial,5 cases water-damaged in transit; rejected at dock
+GRN-9014,PO-4504,V-1003,2026-10-12,Enterprise Server Rack 42U,2,Dock Bay 2,Dock Receiving A,verified,Passed dock QA; mounted in Bay 2
+GRN-9014,PO-4504,V-1003,2026-10-12,Gigabit Ethernet Switch 48-Port,4,Dock Bay 2,Dock Receiving A,verified,Hardware QA passed; serial numbers logged
+GRN-9014,PO-4504,V-1003,2026-10-12,Fiber Optic Patch Cable 10m,25,Dock Bay 2,Dock Receiving A,verified,Continuity tested; passed QA
+GRN-9014,PO-4504,V-1003,2026-10-12,Redundant Power Supply 750W,2,Dock Bay 2,Dock Receiving A,verified,Voltage tested; passed QA
+GRN-9015,PO-664,V-1004,2026-11-04,HDPE PIPE-SDR 6-PE 80\40MM\PN20,315,Dock Bay 4,Dock Receiving C,verified,Pipe coil visual inspection verified; zero defects
+GRN-9016,PO-658,V-1004,2026-11-03,3CX2.5 SQMM CU.INS.PVC 1000M FLAT SUBMER,1000,Dock Bay 4,Dock Receiving C,verified,Drum cable continuity test passed; QA tag attached

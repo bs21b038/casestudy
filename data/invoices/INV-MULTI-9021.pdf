@@ -1,0 +1,69 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >>
+endobj
+4 0 obj
+<< /Length 705 >>
+stream
+BT
+/F1 11 Tf
+50 720 Td
+18 TL
+(INVOICE) Tj
+T*
+(Apex Enterprise Hardware Inc) Tj
+T*
+(Invoice number: HD-9021) Tj
+T*
+(Invoice date: 2026-10-15) Tj
+T*
+(Bill to: Example Buyer Inc) Tj
+T*
+(Purchase order: PO-4504) Tj
+T*
+(Currency: USD) Tj
+T*
+(Description | Qty | Unit price | Line total) Tj
+T*
+(Enterprise Server Rack 42U | 2 | 800.00 | 1600.00) Tj
+T*
+(Gigabit Ethernet Switch 48-Port | 4 | 350.00 | 1400.00) Tj
+T*
+(Fiber Optic Patch Cable 10m | 25 | 12.00 | 300.00) Tj
+T*
+(Redundant Power Supply 750W | 2 | 100.00 | 200.00) Tj
+T*
+(Subtotal: 3,500.00) Tj
+T*
+(Sales tax \(8%\): 280.00) Tj
+T*
+(Invoice total: USD 3,780.00) Tj
+T*
+(Payment terms: Net 30) Tj
+T*
+(Fictional demo invoice - not valid for payment) Tj
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000241 00000 n 
+0000000997 00000 n 
+trailer
+<< /Size 6 /Root 1 0 R >>
+startxref
+1067
+%%EOF

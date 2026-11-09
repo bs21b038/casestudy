@@ -1,0 +1,7 @@
+po_number,vendor_id,po_date,currency,status,subtotal,tax_amount,total,tolerance_amount,tolerance_percent
+PO-4501,V-1001,2026-10-01,USD,approved,1100.00,88.00,1188.00,5.00,1.00
+PO-4502,V-1002,2026-10-03,USD,approved,1200.00,0.00,1200.00,5.00,1.00
+PO-4503,V-1001,2026-10-05,USD,approved,700.00,56.00,756.00,5.00,1.00
+PO-4504,V-1003,2026-10-10,USD,approved,3500.00,280.00,3780.00,10.00,1.00
+PO-664,V-1004,2026-11-01,INR,approved,38228.40,6881.12,45109.52,10.00,1.00
+PO-658,V-1004,2026-11-01,INR,approved,105940.00,19069.20,125009.20,10.00,1.00

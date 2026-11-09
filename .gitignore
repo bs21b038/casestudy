@@ -1,0 +1,27 @@
+# Virtual environments
+.venv/
+venv/
+ENV/
+
+# Environment variables & secrets (do not push API keys)
+.env
+.env.*
+.streamlit/secrets.toml
+
+# Python cache & build files
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# Local database & logs generated at runtime
+data/runs/invoice_runs.sqlite3
+logs/*.log
+
+# Backup zip files
+*.zip
+
+# IDE configurations
+.vscode/
+.idea/
+.DS_Store

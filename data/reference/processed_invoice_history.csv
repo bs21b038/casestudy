@@ -1,0 +1,3 @@
+vendor_id,invoice_number,po_number,invoice_date,currency,subtotal,tax_amount,total,status
+V-1002,AC-8870,PO-4502,2026-10-20,USD,600.00,0.00,600.00,approved
+
