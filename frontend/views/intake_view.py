@@ -69,10 +69,10 @@ def render_intake(nav_callbacks: dict[str, Any]) -> None:
     if not samples_dir.exists():
         samples_dir = BASE_DIR / "data" / "invoices"
 
-    with st.expander("📂 Sample Test Invoices (Quick One-Click Test & Download)", expanded=not bool(invoice)):
+    with st.expander("Sample Test Invoices", expanded=not bool(invoice)):
         st.markdown(
-            "<div style='font-size:0.78rem; color:#64748b; margin-bottom:0.5rem;'>"
-            "Select any pre-configured test invoice below to test instantly, or download the PDF to test manual upload:"
+            "<div style='font-size:0.78rem; color:#64748b; margin-bottom:0.6rem;'>"
+            "Select a test scenario to load directly into the review desk, or download the PDF:"
             "</div>",
             unsafe_allow_html=True,
         )
@@ -83,14 +83,14 @@ def render_intake(nav_callbacks: dict[str, Any]) -> None:
                 st.markdown(
                     f"""
                     <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:6px; padding:0.45rem 0.5rem; margin-bottom:0.35rem; text-align:center;">
-                        <div style="font-size:0.72rem; font-weight:700; color:#0f172a; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;" title="{fname}">{fname}</div>
-                        <div style="font-size:0.67rem; font-weight:600; color:#0e7490; margin-top:2px;">{title}</div>
-                        <div style="font-size:0.64rem; color:#64748b;">{desc}</div>
+                        <div style="font-size:0.73rem; font-weight:700; color:#0f172a; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;" title="{fname}">{fname}</div>
+                        <div style="font-size:0.68rem; font-weight:600; color:#0f766e; margin-top:2px;">{title}</div>
+                        <div style="font-size:0.65rem; color:#64748b; min-height:28px; line-height:1.25; margin-top:2px;">{desc}</div>
                     </div>
                     """,
                     unsafe_allow_html=True,
                 )
-                btn_load = st.button("⚡ Load", key=f"quick_load_{fname}", help=f"Click to load {fname} directly", use_container_width=True)
+                btn_load = st.button("Load", key=f"quick_load_{fname}", help=f"Load {fname} directly", use_container_width=True)
                 if btn_load and fpath.exists():
                     b = fpath.read_bytes()
                     parsed = read_invoice_pdf(b, source_name=fname)
@@ -120,7 +120,7 @@ def render_intake(nav_callbacks: dict[str, Any]) -> None:
 
                 if fpath.exists():
                     st.download_button(
-                        label="📥 Download",
+                        label="Download",
                         data=fpath.read_bytes(),
                         file_name=fname,
                         mime="application/pdf",
