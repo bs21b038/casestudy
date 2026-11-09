@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import os
+from pathlib import Path
 import streamlit as st
 from backend.reader import InvoiceReadError, read_invoice_pdf
 from backend.store import get_next_case_reference
@@ -10,7 +11,7 @@ from frontend.components.ui_helpers import (
     confidence_pill,
     render_top_bar,
 )
-from utils.config import DEFAULT_CASE_REFERENCE, MAX_PDF_BYTES
+from utils.config import BASE_DIR, DEFAULT_CASE_REFERENCE, MAX_PDF_BYTES
 
 
 def render_intake(nav_callbacks: dict[str, Any]) -> None:
@@ -54,6 +55,79 @@ def render_intake(nav_callbacks: dict[str, Any]) -> None:
             key="invoice_upload",
             label_visibility="collapsed",
         )
+
+    # Quick One-Click Load & Download Sample Test Invoices
+    sample_options = [
+        ("INV-NS-1042.pdf", "Happy Path", "100% 2-Way Match", "2way"),
+        ("INV-EDGE-DUPLICATE.pdf", "Duplicate Invoice", "Fraud Prevention Hold", "2way"),
+        ("INV-SHORT-SHIP-5001.pdf", "3-Way Short Ship", "Warehouse Damage Hold", "3way"),
+        ("INV-EDGE-MISSING-NUMBER.pdf", "Missing Header Info", "Needs Clarification", "2way"),
+        ("INV-SCANNED-MOBILE-701.pdf", "Mobile Image OCR", "Gemini Vision Multimodal", "2way"),
+    ]
+
+    samples_dir = BASE_DIR / "sample_test_invoices"
+    if not samples_dir.exists():
+        samples_dir = BASE_DIR / "data" / "invoices"
+
+    with st.expander("📂 Sample Test Invoices (Quick One-Click Test & Download)", expanded=not bool(invoice)):
+        st.markdown(
+            "<div style='font-size:0.78rem; color:#64748b; margin-bottom:0.5rem;'>"
+            "Select any pre-configured test invoice below to test instantly, or download the PDF to test manual upload:"
+            "</div>",
+            unsafe_allow_html=True,
+        )
+        sample_cols = st.columns(len(sample_options))
+        for col, (fname, title, desc, rec_mode) in zip(sample_cols, sample_options):
+            fpath = samples_dir / fname
+            with col:
+                st.markdown(
+                    f"""
+                    <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:6px; padding:0.45rem 0.5rem; margin-bottom:0.35rem; text-align:center;">
+                        <div style="font-size:0.72rem; font-weight:700; color:#0f172a; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;" title="{fname}">{fname}</div>
+                        <div style="font-size:0.67rem; font-weight:600; color:#0e7490; margin-top:2px;">{title}</div>
+                        <div style="font-size:0.64rem; color:#64748b;">{desc}</div>
+                    </div>
+                    """,
+                    unsafe_allow_html=True,
+                )
+                btn_load = st.button("⚡ Load", key=f"quick_load_{fname}", help=f"Click to load {fname} directly", use_container_width=True)
+                if btn_load and fpath.exists():
+                    b = fpath.read_bytes()
+                    parsed = read_invoice_pdf(b, source_name=fname)
+                    st.session_state["matching_mode"] = rec_mode
+                    st.session_state["loaded_filename"] = fname
+                    st.session_state["current_invoice"] = parsed
+                    st.session_state["draft_invoice"] = parsed.copy()
+                    st.session_state["current_invoice_bytes"] = b
+                    upload_count = st.session_state.get("upload_count", 0)
+                    st.session_state["upload_count"] = upload_count + 1
+                    st.session_state["case_reference"] = get_next_case_reference(session_offset=upload_count)
+                    st.session_state["last_result"] = None
+                    for k in ["analyst_notes", "active_memo_tracker", "analyst_action_message", "analyst_memo_input"]:
+                        st.session_state.pop(k, None)
+
+                    st.session_state["meta_vendor_name"] = parsed.get("vendor_name") or ""
+                    st.session_state["meta_invoice_number"] = parsed.get("invoice_number") or ""
+                    st.session_state["meta_invoice_date"] = parsed.get("invoice_date") or ""
+                    st.session_state["meta_po_number"] = parsed.get("po_number") or ""
+                    st.session_state["meta_total_amount"] = str(parsed.get("total") or "")
+                    st.session_state["meta_currency"] = parsed.get("currency") or "USD"
+
+                    completed_steps = st.session_state.get("completed_steps", set())
+                    completed_steps.add(1)
+                    st.session_state["completed_steps"] = completed_steps
+                    st.rerun()
+
+                if fpath.exists():
+                    st.download_button(
+                        label="📥 Download",
+                        data=fpath.read_bytes(),
+                        file_name=fname,
+                        mime="application/pdf",
+                        key=f"dl_btn_{fname}",
+                        help=f"Download {fname} to test manual upload",
+                        use_container_width=True,
+                    )
 
     invoice_bytes: bytes | None = None
     invoice_name = ""
